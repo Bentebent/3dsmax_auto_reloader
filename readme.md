@@ -1,5 +1,7 @@
 # 3ds Max Auto reloader
 
+![image](https://github.com/Bentebent/3dsmax_auto_reloader/assets/7004357/67d936f6-92af-480b-aac0-67bd2d0bf0f7)
+
 Simple script to watch a folder for changes and auto reload any imported modules in 3ds Max. Requires [watchfiles](https://github.com/samuelcolvin/watchfiles) to be installed in your 3ds Max environment. Only tested in 3ds Max 2024 and with pure Python solutions.
 
 **Important!** Does not work if you run any pymxs code when a module is loaded since the reloading runs in its own thread.
