@@ -69,19 +69,10 @@ class AutoReloaderUI(QtWidgets.QDockWidget):
         
     async def file_watcher(self):
         async for changes in awatch(self._selected_path, stop_event=self._stop_event):
-            with open(r"C:\temp\hello_world.txt", "a+") as file:
-                try:
-                    mod = find_module_by_path(str(Path(next(iter(changes), (None, None))[1])))
-                    node_pkg_dict, node_depth_dict = get_package_dependencies(mod)
-                    for (d,v) in sorted([(d,v) for v,d in node_depth_dict.items()], reverse=True):
-                        try:
-                            importlib.reload(node_pkg_dict[v])
-                        except Exception as e:
-                            file.writelines(e)
-                    file.write(f"{mod}\n")
-                    file.writelines(str(Path(next(iter(changes), (None, None))[1])))
-                except Exception as e:
-                    file.writelines(e)
+            mod = find_module_by_path(str(Path(next(iter(changes), (None, None))[1])))
+            node_pkg_dict, node_depth_dict = get_package_dependencies(mod)
+            for (d,v) in sorted([(d,v) for v,d in node_depth_dict.items()], reverse=True):
+                importlib.reload(node_pkg_dict[v])
 	
     async def file_watcher_wrapper(self):
         await self.file_watcher()
