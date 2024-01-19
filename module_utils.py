@@ -8,6 +8,7 @@ def find_module_by_path(module_path):
             return module
     return None
 
+# https://stackoverflow.com/a/73456872
 def get_package_dependencies(package):
 		assert(hasattr(package, "__package__"))
 		fn = package.__file__
